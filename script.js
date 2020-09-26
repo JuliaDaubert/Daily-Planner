@@ -1,42 +1,82 @@
-//Variables
-var displayDate  = document.getElementById ("currentDay");
 
-//Date: Weekday, short month, Date, short Year
-//var currentDate = moment().format('dddd') + moment().format("MMM Do YY");
-//console.log (currentDate);
-//Time: 
-//var currentTime = moment().format("hh:mm:ss A");
-//console.log(currentTime);
+$(document).ready(function () {
 
-
-
-
-// Date and hour 
-
-// Display Date - Get time (no display)
-function timeUpdate() {
-        var today = moment ();
-        var currentDate = today.format('dddd') + today.format(", Do MMM YY");
-        //console.log (currentDate)
-        var currentTime = today.format("hh:mm:ss A");
-        //console.log(currentTime);
-        displayDate.textContent = currentDate;
-};
-
-//Set in intervall to be updated every sec
-setInterval (timeUpdate, 1000);
-//console.log(setInterval);
-timeUpdate ();
-//console.log(timeUpdate);
-
-
-//Change color style according to current time
+        //Variabledeclaration
+        var hour = $(".time-block");
+        var today = moment();
+        var currentTime = today.format("H");
+        console.log(currentTime);
+        
+        
+             
+        //console.log(description);
 
 
 
+        // Get Current Time
+        function timeUpdate() {
+
+                //var currentTime = today.format("H");
+                //console.log(currentTime);
+
+        };
+
+        //Intervall for Time being updated every sec
+        setInterval(timeUpdate, 1000);
+
+
+        //Display Date 
+        function displayDate() {
+                var displayDate = document.getElementById("currentDay");
+                var currentDate = today.format('dddd') + today.format(", Do MMM YY");
+                displayDate.textContent = currentDate;
+        }
+
+        displayDate();
+
+
+        //Compare currentTime and RowID using parseInt to convert datatype 
+
+        var rows = document.querySelectorAll(".row")
+        //var description = document.querySelectorAll (".description")
+        //console.log(rows);
+        for (let index = 0; index < rows.length; index++) {
+                const currentRow = rows[index];
+                var RowID = currentRow.getAttribute ("id");
+                
+                //console.log(RowID);
+ 
+                if (RowID === currentTime) {
+
+
+                        $(".description").addClass("present");
+                        
+                        
+                }
+
+                else if (RowID > currentTime) {
+                        $(".description").addClass("present");
+                        
+                }
+
+                else {
+                        $(".description").addClass("present");
+                        
+                }
 
 
 
 
-//Store UserInput and Time in local storage 
+
+        }
+
+
+        //Store UserInput and Time in local storage 
+
+
+
+
+});
+
+
 
