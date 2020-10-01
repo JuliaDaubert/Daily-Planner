@@ -6,19 +6,10 @@ $(document).ready(function () {
         var today = moment();
         var currentTime = today.format("H");
         console.log(currentTime);
-        
-        
-             
-        //console.log(description);
-
 
 
         // Get Current Time
         function timeUpdate() {
-
-                //var currentTime = today.format("H");
-                //console.log(currentTime);
-
         };
 
         //Intervall for Time being updated every sec
@@ -41,28 +32,31 @@ $(document).ready(function () {
         //var description = document.querySelectorAll (".description")
         //console.log(rows);
         for (let index = 0; index < rows.length; index++) {
-                const currentRow = rows[index];
-                var RowID = currentRow.getAttribute ("id");
-                
+                var currentRow = rows[index];
+                var RowID = currentRow.getAttribute("id");
+                console.log(window.localStorage.getItem(RowID));
+                var ID = "#"+ RowID + " textarea";
+                $(ID).val (window.localStorage.getItem(RowID));
                 //console.log(RowID);
- 
-                if (RowID === currentTime) {
 
 
-                        $(".description").addClass("present");
-                        
-                        
+                if (RowID == currentTime) {
+                      
+                        console.log(ID);
+                        $(ID).addClass("present");
+                }
+                else if (RowID <  currentTime) {
+                      
+                        console.log(ID);
+                        $(ID).addClass("past");
+                }
+                else  {
+                      
+                        console.log(ID);
+                        $(ID).addClass("future");
                 }
 
-                else if (RowID > currentTime) {
-                        $(".description").addClass("present");
-                        
-                }
 
-                else {
-                        $(".description").addClass("present");
-                        
-                }
 
 
 
@@ -73,8 +67,25 @@ $(document).ready(function () {
 
         //Store UserInput and Time in local storage 
 
+        $(".saveBtn").click( function(e){
+
+        console.log(e.target.id);
+
+        var ID = "#"+ e.target.id + " textarea"
+
+        console.log(ID);
+
+        var t = $(ID).val();
+
+        console.log(t);
+
+        
+        window.localStorage.setItem(e.target.id, t);
+        console.log(window.localStorage);
+ })
 
 
+       
 
 });
 
