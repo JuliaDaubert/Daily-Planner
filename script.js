@@ -85,7 +85,14 @@ $(document).ready(function () {
  })
 
 
-       
+       $(".clearBtn").on ("click", function() {
+               localStorage.clear();
+               console.log("clear");
+               window.location.reload();
+
+       });
+
+
 
 });
 
